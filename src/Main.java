@@ -16,6 +16,16 @@ public class Main {
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
-        System.out.println(fileData);
-    }
-}
+        String[] decks = fileData.split("\n");
+        int five = 0;
+        int four = 0;
+        int
+        for (String deck: decks){
+            String[] cards = deck.split(",");
+            cards[4] = cards[4].substring(0, cards[4].lastIndexOf("|"));
+            Deck d = new Deck(cards);
+            d.findType();
+                }
+            }
+
+        }

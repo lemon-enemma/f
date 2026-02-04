@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Deck {
     private String[] cards;
     private String type;
@@ -10,8 +12,8 @@ public class Deck {
 
     public void findType() {
         for (int i = 0; i < cards.length; i++) {
+            int numMatches = 1;
             for (int j = 0; j < cards.length; j++) {
-                int numMatches = 0;
                 if (cards[i].equals(cards[j]) && i != j) {
                     numMatches++;
                 }
@@ -34,13 +36,12 @@ public class Deck {
         else {
             type = "High card";
         }
-        System.out.println(type);
     }
 
     public Boolean fiveOfKind() {
         Boolean b = false;
         for (int repeat : numRepeats) {
-            if (repeat == 4) {
+            if (repeat == 5) {
                 b = true;
             }
         }
@@ -50,7 +51,7 @@ public class Deck {
     public Boolean fourofKind() {
         Boolean b = false;
         for (int repeat : numRepeats) {
-            if (repeat == 3) {
+            if (repeat == 4) {
                 b = true;
             }
         }
@@ -61,10 +62,10 @@ public class Deck {
         Boolean b = false;
         Boolean c = false;
         for (int i = 0; i < numRepeats.length; i++) {
-            if (numRepeats[i] == 2) {
+            if (numRepeats[i] == 3) {
                 b = true;
                 for (int j = 0; j < numRepeats.length; j++) {
-                    if (numRepeats[j] == 1 && i != j) {
+                    if (numRepeats[j] == 2 && i != j) {
                         c = true;
                     }
                 }
@@ -75,13 +76,13 @@ public class Deck {
 
     public Boolean threeofKind() {
         Boolean b = false;
-        Boolean c = true;
+        Boolean c = false;
         for (int i = 0; i < numRepeats.length; i++) {
-            if (numRepeats[i] == 2) {
+            if (numRepeats[i] == 3) {
                 b = true;
                 for (int j = 0; j < numRepeats.length; j++) {
-                    if (numRepeats[j] == 1 && i != j) {
-                        c = false;
+                    if (numRepeats[j] == 2 && i != j) {
+                        c = true;
                     }
                 }
             }
@@ -94,40 +95,35 @@ public class Deck {
     }
 
     public Boolean twoPair() {
-        Boolean b = false;
-        Boolean c = false;
+        int inc = 0;
         for (int i = 0; i < numRepeats.length; i++) {
-            if (numRepeats[i] == 1) {
-                b = true;
-                for (int j = 0; j < numRepeats.length; j++) {
-                    if (numRepeats[j] == 1 && i != j) {
-                        c = true;
-                    }
-                }
+            if (numRepeats[i] == 2) {
+                inc++;
             }
         }
-        return b && c;
+            if (inc == 4){
+                return true;
+            }
+            else {
+                return false;
+            }
     }
 
     public Boolean onePair() {
-        Boolean b = false;
-        Boolean c = true;
+        int inc = 0;
         for (int i = 0; i < numRepeats.length; i++) {
-            if (numRepeats[i] == 1) {
-                b = true;
-                for (int j = 0; j < numRepeats.length; j++) {
-                    if (numRepeats[j] == 1 && i != j) {
-                        c = false;
-                    }
-                }
+            if (numRepeats[i] == 2) {
+                inc++;
             }
         }
-        if (b && !c) {
+        if (inc == 2){
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }
+
 }
 
 
