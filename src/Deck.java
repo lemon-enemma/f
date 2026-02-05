@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class Deck {
     private String[] cards;
-    private String type;
+    private int type;
     private int[] numRepeats;
 
     public Deck(String[] c) {
@@ -21,20 +21,20 @@ public class Deck {
             }
         }
         if (fiveOfKind()){
-            type = "Five of a kind";
+            type = 6;
         } else if (fourofKind()) {
-            type = "Four of a kind";
+            type = 5;
         } else if (fullHouse()) {
-            type = "Full house";
+            type = 4;
         } else if (threeofKind()) {
-            type = "Three of a kind";
+            type = 3;
         } else if (twoPair()) {
-            type = "Two pair";
+            type = 2;
         } else if (onePair()) {
-            type = "One pair";
+            type = 1;
         }
         else {
-            type = "High card";
+            type = 0;
         }
     }
 
@@ -124,7 +124,11 @@ public class Deck {
         }
     }
 
-    public String getType(){
+    public void printTypes (){
+
+    }
+
+    public int getType(){
         return type;
     }
 

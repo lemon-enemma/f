@@ -26,19 +26,24 @@ public class Main {
         int highCard = 0;
         for (String deck: decks){
             String[] cards = deck.split(",");
+            String bidString = cards[4].substring(cards[4].length()-1);
+            for (int i = cards[4].length()-2; !cards[4].substring(i, i+1).equals("|"); i--){
+                bidString = cards[4].substring(i, i+1) + bidString;
+            }
+            int bidInt = Integer.parseInt(bidString);
             cards[4] = cards[4].substring(0, cards[4].lastIndexOf("|"));
             Deck d = new Deck(cards);
             d.findType();
-            if (d.getType().equals("Five of a kind")){
+            if (d.getType() == 6){
                 five++;
             }
-            else if (d.getType().equals("Four of a kind")){
+            else if (d.getType() == 5){
                 four++;
-            } else if (d.getType().equals("Full house")) {
+            } else if (d.getType() == 4) {
                 fullH++;
-            } else if (d.getType().equals("Three of a kind")) {
+            } else if (d.getType() == 3) {
                 three++;
-            } else if (d.getType().equals("Two pair")) {
+            } else if (d.getType() == 2) {
                 twoPair++;
             } else if (d.getType().equals("One pair")) {
                 onePair++;
